@@ -5,6 +5,8 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Caminhos relativos: funciona no GitHub Pages (/charme/) e em qualquer outro endereço
+  base: './',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

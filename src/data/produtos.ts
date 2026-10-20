@@ -4,7 +4,7 @@
  * As fotos abaixo são ILUSTRATIVAS (Unsplash) e servem só para mostrar o
  * layout. Para usar as fotos reais dos pijamas:
  *   1. coloque os arquivos em /public/fotos (ex.: /public/fotos/pijama-01.jpg);
- *   2. troque `url` por '/fotos/pijama-01.jpg' e `ilustrativa` por false;
+ *   2. troque `url` por fotoLocal('pijama-01.jpg') e `ilustrativa` por false;
  *   3. preencha nome, preço, cores e tamanhos apenas quando confirmados.
  * Campos sem valor ficam ocultos no site publicado.
  */
@@ -39,6 +39,9 @@ export interface Produto {
 
 const unsplash = (id: string, largura = 900) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${largura}&q=70`
+
+/** Foto colocada em /public/fotos, ex.: fotoLocal('pijama-01.jpg'). */
+export const fotoLocal = (arquivo: string) => `${import.meta.env.BASE_URL}fotos/${arquivo}`
 
 const ilustrativa = (id: string, alt: string, posicao?: string): Foto => ({
   url: unsplash(id),

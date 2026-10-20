@@ -23,7 +23,7 @@ Stack: Vite + React 19 + TypeScript + Tailwind CSS v4, com estrutura shadcn/ui (
 ### Trocar as fotos ilustrativas pelas fotos reais
 
 1. Coloque as fotos em `public/fotos/` (ex.: `public/fotos/pijama-01.jpg`).
-2. Em `src/data/produtos.ts`, troque `url` por `'/fotos/pijama-01.jpg'` e `ilustrativa` por `false`.
+2. Em `src/data/produtos.ts`, troque `url` por `fotoLocal('pijama-01.jpg')` e `ilustrativa` por `false`.
 3. Preencha `nome`, `preco`, `cores` e `tamanhos` **somente** com dados confirmados.
 
 Campos vazios não aparecem no site. Enquanto `modoDemonstracao` estiver `true` em `src/data/loja.ts`, eles aparecem como “a informar”; mude para `false` antes de publicar.
@@ -50,3 +50,11 @@ Galeria 3D giratória usada na seção “Os pijamas”. Em relação ao compone
 - `onItemClick` — cartões viram botões (abre o detalhe do pijama);
 - `creditLabel` / `fallbackLabel` — textos traduzíveis;
 - respeita “reduzir movimento”, pausa fora da tela e esconde o verso dos cartões.
+
+## Publicação (GitHub Pages)
+
+A cada push em `main` ou `claude/site-qcharmme-pijamas`, o workflow `.github/workflows/pages.yml` gera o site e o envia para a branch `gh-pages`.
+
+Para ativar (uma vez): **Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: `gh-pages` / `(root)` → Save**. O site fica em `https://7biel.github.io/charme/`.
+
+GitHub Pages em repositório privado exige plano pago (GitHub Pro); no plano gratuito, o repositório precisa ser público.
