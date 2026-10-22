@@ -20,10 +20,12 @@ Stack: Vite + React 19 + TypeScript + Tailwind CSS v4, com estrutura shadcn/ui (
 | Pijamas, coleções e fotos | `src/data/produtos.ts` |
 | Cores e fontes da marca | `src/index.css` (`:root`) |
 
-### Trocar as fotos ilustrativas pelas fotos reais
+### Fotos
 
-1. Coloque as fotos em `public/fotos/` (ex.: `public/fotos/pijama-01.jpg`).
-2. Em `src/data/produtos.ts`, troque `url` por `fotoLocal('pijama-01.jpg')` e `ilustrativa` por `false`.
+As fotos reais da loja ficam em `public/fotos/`. Para incluir um modelo:
+
+1. Coloque a foto em `public/fotos/` (ex.: `public/fotos/pijama-01.jpg`).
+2. Em `src/data/produtos.ts`, adicione-a em `fotos` com `real('pijama-01.jpg', 'descrição da foto')` e crie o produto em `produtos`.
 3. Preencha `nome`, `preco`, `cores` e `tamanhos` **somente** com dados confirmados.
 
 Campos vazios não aparecem no site. Enquanto `modoDemonstracao` estiver `true` em `src/data/loja.ts`, eles aparecem como “a informar”; mude para `false` antes de publicar.

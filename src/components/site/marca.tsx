@@ -13,11 +13,11 @@ export function Marca() {
         <div className="mt-16 grid items-center gap-12 md:mt-24 md:grid-cols-12 md:gap-8">
           <Foto
             foto={fotoMarca}
-            sizes="(min-width: 768px) 45vw, 92vw"
-            rotuloAusente="Foto da marca"
-            className="aspect-[4/3] rounded-md md:col-span-6"
+            sizes="(min-width: 768px) 40vw, 92vw"
+            rotuloAusente="Foto da loja"
+            className="mx-auto aspect-[4/5] w-full max-w-md rounded-md md:col-span-5"
           />
-          <div className="md:col-span-5 md:col-start-8">
+          <div className="md:col-span-6 md:col-start-7">
             <h2 id="titulo-marca" className="text-[clamp(2rem,5vw,3.25rem)] leading-[1.08]">
               Conforto que combina com você
             </h2>

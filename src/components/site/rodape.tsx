@@ -13,7 +13,7 @@ export function Rodape() {
   const faltaConfirmar = !temContato || loja.politicas.length === 0
 
   return (
-    <footer id="contato" aria-labelledby="titulo-contato" className="bg-cacau pb-10 pt-20 text-leite md:pt-24">
+    <footer id="contato" aria-labelledby="titulo-contato" className="bg-marinho pb-10 pt-20 text-leite md:pt-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
         <div className="grid gap-14 md:grid-cols-12">
           <div className="md:col-span-4">

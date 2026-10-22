@@ -1,10 +1,9 @@
 /**
  * Vitrine da Q.CHARMME.
  *
- * As fotos abaixo são ILUSTRATIVAS (Unsplash) e servem só para mostrar o
- * layout. Para usar as fotos reais dos pijamas:
- *   1. coloque os arquivos em /public/fotos (ex.: /public/fotos/pijama-01.jpg);
- *   2. troque `url` por fotoLocal('pijama-01.jpg') e `ilustrativa` por false;
+ * Fotos reais da Q.CHARMME ficam em /public/fotos. Para incluir um modelo:
+ *   1. coloque o arquivo em /public/fotos (ex.: /public/fotos/pijama-01.jpg);
+ *   2. adicione-o em `fotos` com real('pijama-01.jpg', 'descrição da foto');
  *   3. preencha nome, preço, cores e tamanhos apenas quando confirmados.
  * Campos sem valor ficam ocultos no site publicado.
  */
@@ -37,46 +36,47 @@ export interface Produto {
   foto: Foto
 }
 
-const unsplash = (id: string, largura = 900) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${largura}&q=70`
-
 /** Foto colocada em /public/fotos, ex.: fotoLocal('pijama-01.jpg'). */
 export const fotoLocal = (arquivo: string) => `${import.meta.env.BASE_URL}fotos/${arquivo}`
 
-const ilustrativa = (id: string, alt: string, posicao?: string): Foto => ({
-  url: unsplash(id),
+const real = (arquivo: string, alt: string, posicao?: string): Foto => ({
+  url: fotoLocal(arquivo),
   alt,
   posicao,
-  ilustrativa: true,
-  credito: 'Unsplash',
+  ilustrativa: false,
 })
 
-export const fotoAbertura = ilustrativa(
-  '1515886657613-9f3515b0c78f',
-  'Imagem ilustrativa de moda feminina, a ser trocada por uma modelo usando pijama Q.CHARMME',
-  '50% 25%',
-)
+const fotos = {
+  fachada: real('loja-fachada.jpg', 'Fachada da loja Q.CHARMME Pijamas, com araras de pijamas coloridos na entrada', '50% 0%'),
+  verde: real(
+    'pijama-verde-gestante.jpg',
+    'Gestante usando pijama curto verde-sálvia com debrum creme e botões',
+    '50% 35%',
+  ),
+  camisola: real(
+    'camisola-renda-agua.jpg',
+    'Detalhe de camisola verde-água com renda bordada em rosa e laços de cetim',
+    '50% 40%',
+  ),
+  masculino: real('pijama-masculino-azul.jpg', 'Homem usando pijama azul de camiseta e calça', '50% 30%'),
+  bege: real('pijama-bege-detalhe.jpg', 'Detalhe de pijama bege com gola, debrum e botões', '50% 30%'),
+}
 
-export const fotoMarca = ilustrativa(
-  '1505693416388-ac5ce068fe85',
-  'Imagem ilustrativa de um quarto claro com roupa de cama branca',
-)
+export const fotoAbertura = fotos.verde
+
+export const fotoMarca = fotos.fachada
 
 export const categorias: Categoria[] = [
-  { id: 'categoria-1', foto: ilustrativa('1441984904996-e0b6ba687e04', 'Imagem ilustrativa para a primeira categoria') },
-  { id: 'categoria-2', foto: ilustrativa('1490481651871-ab68de25d43d', 'Imagem ilustrativa para a segunda categoria') },
-  { id: 'categoria-3', foto: ilustrativa('1540518614846-7eded433c457', 'Imagem ilustrativa para a terceira categoria') },
+  { id: 'categoria-1', foto: fotos.bege },
+  { id: 'categoria-2', foto: fotos.camisola },
+  { id: 'categoria-3', foto: fotos.masculino },
 ]
 
 export const produtos: Produto[] = [
-  { id: 'pijama-01', categoria: 'categoria-1', foto: ilustrativa('1469334031218-e382a71b716b', 'Foto ilustrativa do pijama 1', '50% 30%') },
-  { id: 'pijama-02', categoria: 'categoria-2', foto: ilustrativa('1483985988355-763728e1935b', 'Foto ilustrativa do pijama 2', '50% 35%') },
-  { id: 'pijama-03', categoria: 'categoria-3', foto: ilustrativa('1434389677669-e08b4cac3105', 'Foto ilustrativa do pijama 3') },
-  { id: 'pijama-04', categoria: 'categoria-1', foto: ilustrativa('1445205170230-053b83016050', 'Foto ilustrativa do pijama 4') },
-  { id: 'pijama-05', categoria: 'categoria-2', foto: ilustrativa('1522771739844-6a9f6d5f14af', 'Foto ilustrativa do pijama 5') },
-  { id: 'pijama-06', categoria: 'categoria-3', foto: ilustrativa('1513694203232-719a280e022f', 'Foto ilustrativa do pijama 6') },
-  { id: 'pijama-07', categoria: 'categoria-1', foto: ilustrativa('1616486338812-3dadae4b4ace', 'Foto ilustrativa do pijama 7') },
-  { id: 'pijama-08', categoria: 'categoria-2', foto: ilustrativa('1441986300917-64674bd600d8', 'Foto ilustrativa do pijama 8') },
+  { id: 'pijama-verde', categoria: 'categoria-1', foto: fotos.verde },
+  { id: 'camisola-renda', categoria: 'categoria-2', foto: fotos.camisola },
+  { id: 'pijama-masculino', categoria: 'categoria-3', foto: fotos.masculino },
+  { id: 'pijama-bege', categoria: 'categoria-1', foto: fotos.bege },
 ]
 
 /** Textos usados no lugar de campos ainda não confirmados (só no modo demonstração). */

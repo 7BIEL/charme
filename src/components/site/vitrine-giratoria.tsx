@@ -13,16 +13,20 @@ export function VitrineGiratoria({ onAbrirProduto }: { onAbrirProduto: (indice: 
 
   const itens: GalleryItem[] = useMemo(
     () =>
-      produtos.map((p, i) => ({
-        common: nomeDoProduto(p, i),
-        binomial: p.cores?.join(', ') ?? (loja.modoDemonstracao ? 'Cores a confirmar' : ''),
-        photo: {
-          url: p.foto.url,
-          text: p.foto.alt,
-          pos: p.foto.posicao,
-          by: p.foto.ilustrativa ? `${p.foto.credito ?? ''} (ilustrativa)` : 'Q.CHARMME',
-        },
-      })),
+      // Com poucos modelos o anel fica vazio: repete a lista até ter 8 cartões
+      Array.from({ length: Math.max(8, produtos.length) }, (_, n) => n % produtos.length).map((i) => {
+        const p = produtos[i]
+        return {
+          common: nomeDoProduto(p, i),
+          binomial: p.cores?.join(', ') ?? (loja.modoDemonstracao ? 'Cores a confirmar' : ''),
+          photo: {
+            url: p.foto.url,
+            text: p.foto.alt,
+            pos: p.foto.posicao,
+            by: p.foto.ilustrativa ? `${p.foto.credito ?? ''} (ilustrativa)` : 'Q.CHARMME',
+          },
+        }
+      }),
     [],
   )
 
@@ -55,7 +59,7 @@ export function VitrineGiratoria({ onAbrirProduto }: { onAbrirProduto: (indice: 
             creditLabel="Foto:"
             fallbackLabel="Foto do pijama"
             aria-label="Vitrine giratória de pijamas"
-            onItemClick={(_, i) => onAbrirProduto(i)}
+            onItemClick={(_, n) => onAbrirProduto(n % produtos.length)}
             className="[&_[role=group]>button>div]:listras-pijama [&_[role=group]>button>div]:rounded-md [&_[role=group]>button>div]:shadow-[0_28px_50px_-28px_rgb(42_29_23/0.6)]"
           />
         </div>
